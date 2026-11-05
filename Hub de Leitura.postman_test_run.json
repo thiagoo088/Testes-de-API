@@ -1,0 +1,170 @@
+{
+	"id": "19e5cf32-5b23-413d-ba0c-2ed8f29af932",
+	"name": "Hub de Leitura",
+	"timestamp": "2026-11-05T23:11:17.849Z",
+	"collection_id": "59358610-1eb34872-6b54-4c35-be64-67e4237dc261",
+	"folder_id": "59358610-9b68d8af-c088-4eac-88cd-5c38db0b4b6f",
+	"environment_id": "59358610-ddee8c46-dcb6-4646-9842-6136820d753f",
+	"totalPass": 8,
+	"delay": 1000,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-11-05T23:11:08.761Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "a19bcba6-16cb-4f2c-90ff-a3742acf9d76",
+			"name": "Cadastrar Usuario",
+			"url": "http://localhost:3000/api/users",
+			"time": 2224,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Deve validar o status 201": true,
+				"Deve validar a mensagem de usuario criado com sucesso": true
+			},
+			"testPassFailCounts": {
+				"Deve validar o status 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve validar a mensagem de usuario criado com sucesso": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2224
+			],
+			"allTests": [
+				{
+					"Deve validar o status 201": true,
+					"Deve validar a mensagem de usuario criado com sucesso": true
+				}
+			]
+		},
+		{
+			"id": "811464e7-1840-4c0c-8bcc-6fa37ad2cd1e",
+			"name": "Cadastrar Usuário com e-mail inválido",
+			"url": "http://localhost:3000/api/users",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Deve validar o status 400": true,
+				"Deve validar a mensagem de Formato de email inválido": true
+			},
+			"testPassFailCounts": {
+				"Deve validar o status 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve validar a mensagem de Formato de email inválido": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Deve validar o status 400": true,
+					"Deve validar a mensagem de Formato de email inválido": true
+				}
+			]
+		},
+		{
+			"id": "1220fb64-4d2c-4296-837c-b9432f9e33e4",
+			"name": "Listar usuarios",
+			"url": "http://localhost:3000/api/users",
+			"time": 82,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Deve validar o status 200": true,
+				"Deve validar a propriedade users": true
+			},
+			"testPassFailCounts": {
+				"Deve validar o status 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve validar a propriedade users": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				82
+			],
+			"allTests": [
+				{
+					"Deve validar o status 200": true,
+					"Deve validar a propriedade users": true
+				}
+			]
+		},
+		{
+			"id": "0cf21184-27e9-4002-af3c-b8352fe7ba51",
+			"name": "Listar usuario por ID",
+			"url": "http://localhost:3000/api/users/18",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Deve validar o status 200": true,
+				"Deve validar a propriedade id": true
+			},
+			"testPassFailCounts": {
+				"Deve validar o status 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve validar a propriedade id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Deve validar o status 200": true,
+					"Deve validar a propriedade id": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2335,
+	"collection": {
+		"requests": [
+			{
+				"id": "a19bcba6-16cb-4f2c-90ff-a3742acf9d76",
+				"method": "POST"
+			},
+			{
+				"id": "811464e7-1840-4c0c-8bcc-6fa37ad2cd1e",
+				"method": "POST"
+			},
+			{
+				"id": "1220fb64-4d2c-4296-837c-b9432f9e33e4",
+				"method": "GET"
+			},
+			{
+				"id": "0cf21184-27e9-4002-af3c-b8352fe7ba51",
+				"method": "GET"
+			}
+		]
+	}
+}
