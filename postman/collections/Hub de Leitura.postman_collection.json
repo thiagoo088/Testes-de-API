@@ -97,6 +97,48 @@
           "response": []
         },
         {
+          "name": "E-mail sendo utilizado por outro usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve validar se a resposta tem o status code 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a mensagem Email já está sendo usado por outro usuário \", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Email já está sendo usado por outro usuário\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Elbert Dooley\",\r\n  \"email\": \"Keon.Cartwright@yahoo.com\",\r\n  \"password\": \"kaka123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}users",
+              "host": [
+                "{{baseUrl}}users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Listar usuarios",
           "event": [
             {
@@ -173,10 +215,18 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Deve validar o status 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Deve validar a mensagem de sucesso\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Usuário atualizado com sucesso\");\r\n});"
-                ]
+                  "pm.test(\"Deve validar o status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a mensagem de sucesso\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Usuário atualizado com sucesso\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -206,12 +256,12 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}users/21",
+              "raw": "{{baseUrl}}users/18",
               "host": [
                 "{{baseUrl}}users"
               ],
               "path": [
-                "21"
+                "18"
               ]
             }
           },
@@ -270,10 +320,18 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Deve validar o status 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
-                ]
+                  "pm.test(\"Deve validar o status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar o Usuário Padrão\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Usuário Padrão\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -304,10 +362,21 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Deve validar o status 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst tokenGerado = pm.response.json().token\r\npm.environment.set(\"token\", tokenGerado);"
-                ]
+                  "pm.test(\"Deve validar o status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const tokenGerado = pm.response.json().token\r",
+                  "pm.environment.set(\"token\", tokenGerado);\r",
+                  "\r",
+                  "pm.test(\"Deve validar o id\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -331,6 +400,48 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Login de usuário com a senha errada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve validar o status code 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a mensagem Email ou senha incorretos \", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Email ou senha incorretos\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"usuario@teste.com\",\r\n  \"password\": \"kiier123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}login",
+              "host": [
+                "{{baseUrl}}login"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -339,6 +450,25 @@
       "item": [
         {
           "name": "criar reserva de livro",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve validar o status  200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a propriedade reservations \", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"reservations\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [
@@ -370,6 +500,70 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Reserva de livro sem o token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a mensagem Token de acesso necessário\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Token de acesso necessário\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 6\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reservations?",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reservations"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -382,16 +576,33 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Deve validar o status  200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Deve validar a propriedade books\", function () {\r\n    pm.expect(pm.response.json()).to.have.property(\"books\")\r\n})"
-                ]
+                  "pm.test(\"Deve validar o status  200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a propriedade books\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.have.property(\"books\")\r",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
           "request": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{baseUrl}}books",
               "host": [
@@ -426,6 +637,54 @@
               "raw": "{{baseUrl}}books",
               "host": [
                 "{{baseUrl}}books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reserva de livro que não existe no catálogo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve validar o status 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve validar a mensagem Livro não encontrado \", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Livro não encontrado\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}books/99",
+              "host": [
+                "{{baseUrl}}books"
+              ],
+              "path": [
+                "99"
               ]
             }
           },
